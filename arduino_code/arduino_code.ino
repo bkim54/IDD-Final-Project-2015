@@ -54,10 +54,10 @@ void loop(void)
    
   /* Display the results (acceleration is measured in m/s^2) */
   accel.getEvent(&event);
-  Serial.print(F("ACCEL "));
-  Serial.print("X: "); Serial.print(event.acceleration.x); Serial.print("  ");
-  Serial.print("Y: "); Serial.print(event.acceleration.y); Serial.print("  ");
-  Serial.print("Z: "); Serial.print(event.acceleration.z); Serial.print("  ");Serial.println("m/s^2 ");
+  Serial.print(F("Accel: "));
+  Serial.print(event.acceleration.x); Serial.print("  ");
+  Serial.print(event.acceleration.y); Serial.print("  ");
+  Serial.println(event.acceleration.z); 
 
 //  /* Display the results (magnetic vector values are in micro-Tesla (uT)) */
 //  mag.getEvent(&event);
@@ -68,13 +68,13 @@ void loop(void)
 
   /* Display the results (gyrocope values in rad/s) */
   gyro.getEvent(&event);
-  Serial.print(F("GYRO  "));
-  Serial.print("X: "); Serial.print(event.gyro.x); Serial.print("  ");
-  Serial.print("Y: "); Serial.print(event.gyro.y); Serial.print("  ");
-  Serial.print("Z: "); Serial.print(event.gyro.z); Serial.print("  ");Serial.println("rad/s ");  
+  Serial.print(F("Gyro: "));
+  Serial.print(event.gyro.x); Serial.print("  ");
+  Serial.print(event.gyro.y); Serial.print("  ");
+  Serial.println(event.gyro.z); 
 
   FSR0_value = analogRead(FSR0);
+  Serial.print("FSR: ");
   Serial.println(FSR0_value);
-  //Serial.println(F(""));
-  delay(1000);
+  delay(50);
 }
