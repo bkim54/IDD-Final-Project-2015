@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+        <title>EZ EES</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/ico" href="images/computer-mouse-2.ico">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/html5-canvas-bar-graph.js"></script>
+        <script type="text/javascript" src="scripts/mouse.js"></script>
+        <script type="text/javascript">
+            // This is a jQuery convention to say that once all the files
+            // load, the function Smile.start() should run.
+            // This function is defined in the smiles.js
+            $(function() {
+                // TODO: fix this thing
+                Mouse.start();
+            });
+        </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png">
+        </div>
+        <div class="dashboard">
+            Dashboard
+            <div class="dashboard-inner">
+                <div class="graph-elem">
+                    <div class="graph-elem-title">
+                        Motion Tracker
+                    </div>
+                    <canvas class="graph" id="motion-tracker-graph">
+                    </canvas>
+                </div>
+                <div class="graph-elem">
+                    <div class="graph-elem-title">
+                        Pressure Tracker
+                    </div>
+                    <canvas class="graph" id="pressure-tracker-graph">
+                    </canvas>
+                </div>
+                <div class="graph-elem">
+                    <div class="graph-elem-title">
+                        Pressure Map
+                    </div>
+                    <canvas class="graph" id="pressure-map-graph">
+                    </canvas>
+                </div>
+                <div class="graph-elem">
+                    <div class="graph-elem-title">
+                        Motion Bar Graph
+                    </div>
+                    <canvas class="graph" id="motion-bar-graph">
+                    </canvas>
+                </div>
+                <div class="graph-elem">
+                    <div class="graph-elem-title">
+                        Motion Pie Graph
+                    </div>
+                    <canvas class="graph" id="motion-pie-graph">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
