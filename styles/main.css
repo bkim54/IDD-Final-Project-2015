@@ -18,13 +18,14 @@ header {
 div.logo {
 	position: absolute;
 	display: block;
-	padding-left: 20px;
+	padding: 20px;
 	margin-left: 20px;
 	text-align: center;
 }
 div.dashboard {
-	margin-top: 150px;
+	margin-top: 120px;
 	background-color: #d3d8df;
+	position: relative;
 	padding: 10px;
 	font-size: 180%;
 	display: block;
@@ -34,6 +35,7 @@ div.graph-elem {
 	padding: 10px;
 	margin: 10px;
 	text-align: center;
+    border-radius: 10px;
 	display: block;
     -webkit-column-break-inside: avoid;
 }
@@ -211,7 +213,7 @@ a.cancel:hover {
 }*/
 
 /* FINISH ME (Task 3): add responsive styling for the number of layout columns */
-@media screen and (min-width: 1270px) {
+@media screen and (min-width: 1400px) {
 
 	div.dashboard-inner {
 	    -webkit-column-count: 2; /* Chrome, Safari, Opera */
@@ -220,7 +222,7 @@ a.cancel:hover {
 	}
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 2100px) {
 
 	div.dashboard-inner {
 	    -webkit-column-count: 3; /* Chrome, Safari, Opera */
