@@ -1,0 +1,232 @@
+body {
+	margin: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+	background-color: #293d47;
+}
+
+header {
+	/*display:block;*/	
+	width:100%;
+	text-align: left;
+	position: fixed;
+	top:0px;
+	background-color: #293d47;
+}
+div.logo {
+	position: absolute;
+	display: block;
+	padding: 20px;
+	margin-left: 20px;
+	text-align: center;
+}
+div.dashboard {
+	margin-top: 120px;
+	background-color: #d3d8df;
+	position: relative;
+	padding: 10px;
+	font-size: 180%;
+	display: block;
+}
+div.graph-elem {
+	background-color: #f6faff;
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+    border-radius: 10px;
+	display: block;
+    -webkit-column-break-inside: avoid;
+}
+	
+/*a.my-button {
+	display:block;
+	width:100%;
+	text-align:center;
+	background-color: #e0a030;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}
+a.my-button:hover {
+	display:block;
+	width:100%;
+	text-align:center;
+	background-color: #d09020;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}*/
+
+/*
+div.title {
+	font-size: 140%;
+}
+button.like {
+	border:none;
+	background: none;
+}
+div.happiness-level-1 {
+	background-image: url("../images/happiness-level.png");
+	width: 40px;
+	height: 80px;
+	margin-left: 10px;
+	background-position: 0px;
+}
+div.happiness-level-2 {
+	background-image: url("../images/happiness-level.png");
+	width: 40px;
+	height: 80px;
+	margin-left: 10px;
+	background-position: 80px;
+}
+div.happiness-level-3 {
+	background-image: url("../images/happiness-level.png");
+	width: 40px;
+	height: 80px;
+	margin-left: 10px;
+	background-position: 40px;
+}
+article.smile {
+	display:block;
+	width:100%;
+	text-align:center;
+	background-color: #efedcf;
+	margin-bottom: 20px;
+
+}
+
+div.happiness-level-col {
+	float:left;
+	width:60px;
+	text-align: center;
+}
+div.story-col {
+	float:left;
+	width: calc(100% - 160px);
+	text-align: left;
+	margin-bottom: 5px;
+}
+div.like-col {
+	float:right;
+	width:100px;
+	text-align: center;
+}
+div.timestamp {
+	clear:left;
+	text-align: left;
+	margin-left: 60px;
+	margin-bottom: 5px;
+	color: #656555;
+	font-size: 90%;
+}
+
+form {
+	display: block;
+	width: 80%;
+	margin: auto;
+}
+
+input.title-input {
+	display: block;
+	width: 100%;
+}
+
+input.story-input {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+	height: 8em;
+}
+select.happiness-level-input {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+input.submit-input {
+	float:right;
+	background-color: #e0a030;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}
+input.submit-input:hover {
+	float:right;
+	background-color: #d09020;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}
+
+a.my-button {
+	display:block;
+	width:100%;
+	text-align:center;
+	background-color: #e0a030;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}
+a.my-button:hover {
+	display:block;
+	width:100%;
+	text-align:center;
+	background-color: #d09020;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}
+
+a.cancel {
+	float:left;
+	background-color: #e0a030;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+	padding: 1px 3px 1px 3px;
+}
+a.cancel:hover {
+	float:left;
+	background-color: #d09020;
+	border-style: outset;
+	text-decoration: none;
+	color: #eeeeee;
+	font-size: 120%;
+}*/
+
+/* FINISH ME (Task 3): add responsive styling for the number of layout columns */
+@media screen and (min-width: 1400px) {
+
+	div.dashboard-inner {
+	    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+	    -moz-column-count: 2; /* Firefox */
+	    column-count: 2;
+	}
+}
+
+@media screen and (min-width: 2100px) {
+
+	div.dashboard-inner {
+	    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+	    -moz-column-count: 3; /* Firefox */
+	    column-count: 3;
+	}
+}
