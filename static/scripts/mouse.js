@@ -75,8 +75,8 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-		makeGetRequest(apiUrl + '/motion_pie', onSuccess, onFailure);
-		
+		makeGetRequest('/motion_pie', onSuccess, onFailure);
+
 		var cxt = document.getElementById("motion-tracker-graph").getContext("2d");
 		
 		Chart.defaults.global.responsive = true;
