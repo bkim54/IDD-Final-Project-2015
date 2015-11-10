@@ -2,6 +2,7 @@ import serial
 import numpy
 import datetime
 import dataset
+import easygui
 
 def checkInput(read, s):
     if (numpy.size(read) != 0):
@@ -17,12 +18,14 @@ connected=False
 count = 0;
 gyro_buffer=[0,0,0,0,0,0,0,0,0,0] 
 accel_buffer = [0,0,0,0,0,0,0,0,0,0]
-oldKey = ""
+FSR0_buffer=[0,0,0,0,0,0,0,0,0,0] 
+FSR1_buffer=[0,0,0,0,0,0,0,0,0,0] 
+FSR2_buffer=[0,0,0,0,0,0,0,0,0,0] 
+FSR3_buffer=[0,0,0,0,0,0,0,0,0,0] 
+old_force_key = ""
+old_IMU_key = ""
 elbowCount = 0
 wristCount = 0
-
-
-        
 
 if __name__ == "__main__":    
     try:
@@ -44,13 +47,13 @@ if __name__ == "__main__":
         except serial.SerialException:
             print "disconnected"
             break
-        key = str(datetime.date.today()) + " " + str(datetime.datetime.now().hour)
         if (checkInput(accel, "Accel:")):
             accel = [float(accel[1]), float(accel[2])] #just take into accout x,y
             accel = numpy.sqrt(numpy.sum(numpy.power(accel,2)))
             
             try:
                 gyro = ser.readline().split()
+                force = ser.readline().split()
             except serial.SerialException:
                 print "disconnected"
                 break
@@ -59,46 +62,67 @@ if __name__ == "__main__":
             gyro = numpy.sqrt(numpy.sum(numpy.power(gyro,2)))
             
             gyro_buffer[count%10] = gyro
-            accel_buffer[count%10] = accel        
+            accel_buffer[count%10] = accel  
+            FSR0_buffer[count%10]  = float(force[1])
+            FSR1_buffer[count%10] =float(force[2])
+            FSR2_buffer[count%10] =float(force[3])
+            FSR3_buffer[count%10] =float(force[4])
+            
             count = count+1
             if (count ==10):
                 count = 0
             gyro = numpy.sum(gyro_buffer)/10.0
             accel = numpy.sum(accel_buffer)/10.0
+            force = [numpy.sum(FSR0_buffer)/10.0, numpy.sum(FSR1_buffer)/10.0, numpy.sum(FSR2_buffer)/10.0, numpy.sum(FSR3_buffer)/10.0]
+            #print force
             #print "accel: " +str(accel)
             #print "gyro: " + str(gyro)
+            key = str(datetime.date.today()) + " " + str(datetime.datetime.now().hour)
+            #print datetime.datetime.now().minute
             if (accel > ACCEL_THRESH):
+                #print key
                 if (gyro > GYRO_THRESH):
-                    if (key == oldKey):
+                    if (key == old_IMU_key):
                         wristCount = wristCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
+                        print "update database: current hour, wrist_count"
+                        #easygui.msgbox("This is a message!", title="simple gui")
                     else:
                         elbowCount = 0
                         wristCount = 1
                         motion_table.insert(dict(date=key, elbow = elbowCount, wrist = wristCount))
-                    print "update database: current hour, wrist_count"
+                        print "insert database: current hour, wrist_count"
+                        #ctypes.windll.user32.MessageBoxA(0, "Your text", "Your title", 1)  
+                        
+                
                 else:
-                    if (key == oldKey):
+                    if (key == old_IMU_key):
                         elbowCount = elbowCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
+                        print "update database: current hour, elbow_count"      
                     else:
                         elbowCount = 1
-                        wristCount = 0
+                        #wristCount = 0
                         motion_table.insert(dict(date=key, elbow = elbowCount, wrist = wristCount))
-                    print "update database: current hour, elbow_count"                
-            
-    #        try:
-    #            force = ser.readline().split()
-    #        except serial.SerialException:
-    #            print "disconnected"
-    #            break
-    #        if (checkInput(force, "FSR: ")):
-    #            force = [float(force[1]),float(force[2]),float(force[3])]
-    #            force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1]), FSR2= force[2])
+                        print "insert database: current hour, elbow_count" 
+                old_IMU_key = key
+                
+             #print "FSR database" 
+            if (key == old_force_key):
+                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR3= force[3]),['date'])
+            else:
+                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR3= force[3]))
+            old_force_key = key
+
         
-        oldKey = key
+        
     
     print "DCed"
+#    print "elbow",  elbowCount
+#    print "wrist", wristCount
+#    for m in db['motion']:
+#        print m['elbow']
+#        print m['wrist']
 #key = str(datetime.date.today()) + " " + str(datetime.datetime.now().hour)
 #db = dataset.connect('sqlite:///nbedmbed.db')        
 #table = db['motion']

@@ -101,7 +101,7 @@ var Mouse = (function() {
         };
         window.setInterval(function() {
 			makeGetRequest('/motion_pie', onSuccess, onFailure);
-		}, 3000);
+		}, 5000);
 
 	}
 

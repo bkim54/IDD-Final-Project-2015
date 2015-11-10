@@ -14,12 +14,10 @@ int FSR0 = A0;
 int FSR1 = A1;
 int FSR2 = A2;
 int FSR3 = A3;
-int FSR4 = A4;
 int FSR0_value = 0;
 int FSR1_value = 0;
 int FSR2_value = 0;
 int FSR3_value = 0;
-int FSR4_value = 0;
 
 void setup(void)
 {
@@ -74,7 +72,13 @@ void loop(void)
   Serial.println(event.gyro.z); 
 
   FSR0_value = analogRead(FSR0);
-  Serial.print("FSR: ");
-  Serial.println(FSR0_value);
+  FSR1_value = analogRead(FSR1);
+  FSR2_value = analogRead(FSR2);
+  FSR3_value = analogRead(FSR3);
+  Serial.print(F("FSR: "));
+  Serial.print(FSR0_value); Serial.print("  ");
+  Serial.print(FSR1_value); Serial.print("  ");
+  Serial.print(FSR2_value); Serial.print("  ");
+  Serial.println(FSR3_value); 
   delay(50);
 }
