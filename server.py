@@ -9,6 +9,7 @@ Created on Mon Nov 09 14:47:38 2015
 import web
 import dataset
 import json
+import random
 db = dataset.connect('sqlite:///nbedmbed.db')  
 
 urls = (
@@ -19,8 +20,7 @@ app = web.application(urls, globals())
 
 class update_motion_pie:        
     def GET(self):
-    	print "hello"
-        return json.dumps({'fake1': 1, 'fake2': 2, 'fake': 3})
+        return json.dumps({'wrist': random.randint(0,20), 'elbow': random.randint(0,20)})
 
 
 if __name__ == "__main__":

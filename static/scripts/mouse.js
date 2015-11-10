@@ -69,34 +69,40 @@ var Mouse = (function() {
 	}
 
 	var motionTrackerGraph= function() {
-        var onSuccess = function(data) {
-        	console.log(data);
-        };
-        var onFailure = function() { 
-            console.error('error'); 
-        };
-		makeGetRequest('/motion_pie', onSuccess, onFailure);
-
 		var cxt = document.getElementById("motion-tracker-graph").getContext("2d");
 		
 		Chart.defaults.global.responsive = true;
 		Chart.defaults.global.tooltipFontSize = 20;
 		Chart.defaults.global.scaleFontSize = 20;
-		var data = [
+		var graphData = [
 		    {
-		        value: 300,
+		        value: 5,
 		        color:"#aaaaaa",
 		        highlight: "#FF5A5E",
 		        label: "Wrist"
 		    },
 		    {
-		        value: 50,
+		        value: 5,
 		        color: "#76BFFD",
 		        highlight: "#5AD3D1",
 		        label: "Elbow"
 		    }
 		]
-		var graph = new Chart(cxt).Pie(data, {});
+		var graph = new Chart(cxt).Pie(graphData, {});
+        var onSuccess = function(data) {
+        	console.log(data);
+        	console.log(graph);
+        	graph.segments[0].value = data['wrist'];
+        	graph.segments[1].value = data['elbow'];
+        	graph.update();
+        };
+        var onFailure = function() { 
+            console.error('error'); 
+        };
+        window.setInterval(function() {
+			makeGetRequest('/motion_pie', onSuccess, onFailure);
+		}, 3000);
+
 	}
 
 	var start = function() {
