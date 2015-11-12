@@ -66,9 +66,22 @@ var Mouse = (function() {
 		    ]
 		};
 		var graph = new Chart(cxt).Bar(data, {});
+		var onSuccess = function(data) {
+        	console.log(data);
+        	console.log(graph);
+        	
+        	graph.update();
+        };
+        var onFailure = function() { 
+            console.error('error'); 
+        };
+		makeGetRequest('/motion_bar', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/motion_bar', onSuccess, onFailure);
+		}, 5000);
 	}
 
-	var motionTrackerGraph= function() {
+	var motionPieGraph= function() {
 		var cxt = document.getElementById("motion-tracker-graph").getContext("2d");
 		
 		Chart.defaults.global.responsive = true;
@@ -78,7 +91,7 @@ var Mouse = (function() {
 		    {
 		        value: 5,
 		        color:"#aaaaaa",
-		        highlight: "#FF5A5E",
+		        highlight: "#5F5A5E",
 		        label: "Wrist"
 		    },
 		    {
@@ -90,8 +103,6 @@ var Mouse = (function() {
 		]
 		var graph = new Chart(cxt).Pie(graphData, {});
         var onSuccess = function(data) {
-        	console.log(data);
-        	console.log(graph);
         	graph.segments[0].value = data['wrist'];
         	graph.segments[1].value = data['elbow'];
         	graph.update();
@@ -99,6 +110,7 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
+		makeGetRequest('/motion_pie', onSuccess, onFailure);
         window.setInterval(function() {
 			makeGetRequest('/motion_pie', onSuccess, onFailure);
 		}, 5000);
@@ -107,7 +119,7 @@ var Mouse = (function() {
 
 	var start = function() {
 		motionBarGraph();
-		motionTrackerGraph();
+		motionPieGraph();
 	};
 
 

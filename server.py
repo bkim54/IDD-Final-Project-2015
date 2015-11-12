@@ -36,8 +36,11 @@ class update_motion_pie:
 class update_motion_bar:
     def GET(self):
         data = dict()
+        for i in range(24):
+        	data[str(i)] = {'wrist': 0, 'elbow': 0}
         for m in db['motion']:
-            data[m['date']] = dict({'wrist': m['wrist'], 'elbow': m['elbow']})
+            if m['date'].startswith(str(datetime.date.today())):
+                data[m['date'].split()[1]] = {'wrist': m['wrist'], 'elbow': m['elbow']}
             print m['elbow']
             print m['wrist']
         #return json.dumps({'wrist': random.randint(0,20), 'elbow': random.randint(0,20)})
