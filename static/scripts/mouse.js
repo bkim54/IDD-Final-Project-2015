@@ -48,7 +48,7 @@ var Mouse = (function() {
 		    labels: ["8-9AM", "9-10AM", "10-11AM", "11-12PM", "12-1PM", "1-2PM", "2-3PM"],
 		    datasets: [
 		        {
-		            label: "My First dataset",
+		            label: "Elbow",
 		            fillColor: "rgba(220,220,220,0.5)",
 		            strokeColor: "rgba(220,220,220,0.8)",
 		            highlightFill: "rgba(220,220,220,0.75)",
@@ -56,7 +56,7 @@ var Mouse = (function() {
 		            data: [65, 59, 80, 81, 56, 55, 40]
 		        },
 		        {
-		            label: "My Second dataset",
+		            label: "Wrist",
 		            fillColor: "rgba(151,187,205,0.5)",
 		            strokeColor: "rgba(151,187,205,0.8)",
 		            highlightFill: "rgba(151,187,205,0.75)",
@@ -69,7 +69,12 @@ var Mouse = (function() {
 		var onSuccess = function(data) {
         	console.log(data);
         	console.log(graph);
-        	
+        	graph.scale.xLabel = [];
+        	graph.datasets[0];
+        	graph.datasets[1];
+        	for (i=0;i<24;i++) {
+        		labels
+        	}
         	graph.update();
         };
         var onFailure = function() { 
