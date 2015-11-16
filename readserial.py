@@ -3,6 +3,7 @@ import numpy
 import datetime
 import dataset
 import easygui
+import struct
 
 def checkInput(read, s):
     if (numpy.size(read) != 0):
@@ -26,6 +27,7 @@ old_force_key = ""
 old_IMU_key = ""
 elbowCount = 0
 wristCount = 0
+notWritten = True;
 
 if __name__ == "__main__":    
     try:
@@ -42,6 +44,13 @@ if __name__ == "__main__":
         connected=False
         
     while (connected):
+        #ser.write("1".encode());
+        #ser.write("255".encode());
+        #print "wrote"
+        #print "connected"
+        #print ser.readline();
+        #print "read"
+    
         try:
             accel = ser.readline().split()
         except serial.SerialException:
@@ -86,6 +95,10 @@ if __name__ == "__main__":
                         wristCount = wristCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
                         print "update database: current hour, wrist_count"
+#                        if notWritten:
+#                            ser.write("1".encode());
+#                            ser.write("255".encode());
+#                            notWritten = False; 
                         #easygui.msgbox("This is a message!", title="simple gui")
                     else:
                         elbowCount = 0
@@ -100,6 +113,8 @@ if __name__ == "__main__":
                         elbowCount = elbowCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
                         print "update database: current hour, elbow_count"      
+#                        ser.write("0".encode());
+#                        ser.write("0".encode());
                     else:
                         elbowCount = 1
                         #wristCount = 0
