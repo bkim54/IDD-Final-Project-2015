@@ -14,7 +14,7 @@ for i in range(7,18):
 	motion_table.insert(dict(date=key, elbow = randint(20,100), wrist = randint(20,100)))
 	force_table.insert(dict(date=key, FSR0 = random(), FSR1 = random(), FSR2= random(), FSR3= random()))
 
-while True:
+for i in range(1,20):
 	force_table.update(dict(date=key, FSR0 = random(), FSR1 = random(), FSR2= random(), FSR3= random()),['date'])
 	motion_table.update(dict(date=key,elbow = randint(20,100), wrist = randint(20,100)),['date'])
 	time.sleep(200)
