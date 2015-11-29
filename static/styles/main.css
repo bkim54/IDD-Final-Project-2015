@@ -26,16 +26,22 @@ div.dashboard {
 	margin-top: 120px;
 	background-color: #d3d8df;
 	position: relative;
-	padding: 10px;
+	padding-top: 10px;
 	font-size: 180%;
 	display: block;
+}
+div.dashboard-text {
+	margin-left: 20px;
+	margin-top: 10px;
+	font-size: 130%;
 }
 div.graph-elem {
 	background-color: #f6faff;
 	padding: 10px;
-	margin: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	text-align: center;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 	display: block;
     -webkit-column-break-inside: avoid;
 }

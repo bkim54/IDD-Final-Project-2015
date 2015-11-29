@@ -43,7 +43,8 @@ var Mouse = (function() {
 		
 		Chart.defaults.global.responsive = true;
 		Chart.defaults.global.tooltipFontSize = 20;
-		Chart.defaults.global.scaleFontSize = 20;
+		Chart.defaults.global.scaleFontSize = 14;
+		Chart.defaults.global.animation = false;
 		var data = {
 		    labels: ["8-9AM", "9-10AM", "10-11AM", "11-12PM", "12-1PM", "1-2PM", "2-3PM"],
 		    datasets: [
@@ -67,23 +68,28 @@ var Mouse = (function() {
 		};
 		var graph = new Chart(cxt).Bar(data, {});
 		var onSuccess = function(data) {
-        	console.log(data);
-        	console.log(graph);
-        	graph.scale.xLabel = [];
-        	graph.datasets[0];
-        	graph.datasets[1];
-        	for (i=0;i<24;i++) {
-        		labels
-        	}
+        	// console.log(data);
+        	// console.log(graph);
+        	while (graph.datasets[0].bars.length) {
+        		graph.removeData();
+    		};
+        	for (key in data) {
+        		// graph.scale.xLabel[key] = (key == 0 || key == 12 ? 12 : key%12).toString() + (key >= 12 ? "PM":"AM");
+        		// graph.datasets[0].data[key] = data[key]['elbow'];
+        		// graph.datasets[1].data[key] = data[key]['wrist'];
+        		graph.addData([data[key]['elbow'], data[key]['wrist']], (key == 0 || key == 12 ? 12 : key%12).toString() + (key >= 12 ? " PM":" AM"));
+
+        	};
         	graph.update();
+        	// console.log(graph);
         };
         var onFailure = function() { 
             console.error('error'); 
         };
 		makeGetRequest('/motion_bar', onSuccess, onFailure);
-        window.setInterval(function() {
-			makeGetRequest('/motion_bar', onSuccess, onFailure);
-		}, 5000);
+  //       window.setInterval(function() {
+		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
+		// }, 5000);
 	}
 
 	var motionPieGraph= function() {
