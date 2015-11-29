@@ -39,11 +39,13 @@ if __name__ == "__main__":
         motion_table.delete()
         force_table = db['force']
         force_table.delete()
+        print "connected"
     except serial.SerialException:
         print "No device connected"
         connected=False
         
     while (connected):
+        
         #ser.write("1".encode());
         #ser.write("255".encode());
         #print "wrote"

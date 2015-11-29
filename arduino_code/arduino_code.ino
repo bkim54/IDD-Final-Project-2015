@@ -8,8 +8,10 @@
   #include <avr/power.h>
 #endif
 
-#define ACCEL_THRESH 1.2
+#define ACCEL_THRESH 1.0
 #define GYRO_THRESH 0.5
+#define MAG_THRESH 8.0
+#define FSR_THRESH 100.0
 
 /*Define LEDSTRIP */
 #define PIN 5
@@ -47,9 +49,13 @@ float accel_buffer[10];
 float gyro_mag = 0;
 float accel_mag = 0;
 float gyro_avg = 0;
+float accel_avg = 0;
 int count = 0;
 float header = 0;
 float prev_header = 0;
+
+float notMoving = 0;
+
 void setup(void)
 {
   pinMode(motorPin, OUTPUT);
@@ -133,19 +139,19 @@ void loop(void)
     //Serial.println(F(""));
     header = orientation.heading;
   }
-//  Serial.print(F("Accel: "));
-//  Serial.print(accel_event.acceleration.x); Serial.print("  ");
-//  Serial.print(accel_event.acceleration.y); Serial.print("  ");
-//  Serial.println(accel_event.acceleration.z); 
+  Serial.print(F("Accel: "));
+  Serial.print(accel_event.acceleration.x); Serial.print("  ");
+  Serial.print(accel_event.acceleration.y); Serial.print("  ");
+  Serial.println(accel_event.acceleration.z); 
 
   accel_mag = sqrt(pow(accel_event.acceleration.x,2)+pow(accel_event.acceleration.y,2));
 
   /* Display the results (gyrocope values in rad/s) */
   gyro.getEvent(&gyro_event);
-//  Serial.print(F("Gyro: "));
-//  Serial.print(gyro_event.gyro.x); Serial.print("  ");
-//  Serial.print(gyro_event.gyro.y); Serial.print("  ");
-//  Serial.println(gyro_event.gyro.z); 
+  Serial.print(F("Gyro: "));
+  Serial.print(gyro_event.gyro.x); Serial.print("  ");
+  Serial.print(gyro_event.gyro.y); Serial.print("  ");
+  Serial.println(gyro_event.gyro.z); 
   
   gyro_mag = sqrt(pow(gyro_event.gyro.x,2)+pow(gyro_event.gyro.y,2)+pow(gyro_event.gyro.z,2));
 
@@ -153,49 +159,65 @@ void loop(void)
   FSR1_value = analogRead(FSR1);
   FSR2_value = analogRead(FSR2);
   FSR3_value = analogRead(FSR3);
-//  Serial.print(F("FSR: "));
-//  Serial.print(FSR0_value); Serial.print("  ");
-//  Serial.print(FSR1_value); Serial.print("  ");
-//  Serial.print(FSR2_value); Serial.print("  ");
-//  Serial.println(FSR3_value); 
+  //Serial.println(FSR0_value);
+  Serial.print(F("FSR: "));
+  Serial.print(FSR0_value); Serial.print("  ");
+  Serial.print(FSR1_value); Serial.print("  ");
+  Serial.print(FSR2_value); Serial.print("  ");
+  Serial.println(FSR3_value); 
   //Serial.println("----");
   //Serial.println(accel_mag);
   //Serial.println(gyro_mag);
-  //Serial.println("----");
+  //Serial.p rintln("----");
   accel_buffer[count%10] = accel_mag;
   gyro_buffer[count%10] = gyro_mag;
   count++;
   if(count==10)
     count=0;
-  accel_mag=0;
+  accel_avg=0;
   gyro_avg=0;
   
   for(int i =0; i < 10; i++) {
-    accel_mag=accel_mag+accel_buffer[i];
+    accel_avg=accel_avg+accel_buffer[i];
   }
   for(int i =0; i < 10; i++) {
     gyro_avg=gyro_avg+gyro_buffer[i];
   }
   
-  accel_mag = accel_mag/10.0;
+  accel_avg = accel_avg/10.0;
   gyro_avg = gyro_avg/10.0;
   //Serial.println(accel_mag);
   //Serial.println(gyro_mag);
   if(accel_mag > ACCEL_THRESH) {
-    if (abs(header-prev_header) > 15) {
+    if (abs(header-prev_header) > MAG_THRESH) {
       //if(gyro_avg > GYRO_THRESH && gyro_mag > gyro_avg) 
        if(gyro_mag > GYRO_THRESH) { 
+         //Serial.println(gyro_mag);
         theaterChase(strip.Color(127, 0, 0), 25);
+        //analogWrite(motorPin, 255);
       } 
-    }
+    } 
     else {
+      /*For Debug*/
+      //if(gyro_mag > GYRO_THRESH)
+         //Serial.println(abs(header-prev_header));
+         //Serial.println(gyro_mag);
       theaterChase(strip.Color(0, 0, 0), 10);
+      //analogWrite(motorPin, 0);
     }
   } else { //not moving so reset the resting state
+    //Serial.println(accel_mag);
     prev_header = header;
     theaterChase(strip.Color(0, 0, 0), 10);
+    //analogWrite(motorPin, 0);
   }
-  delay(50);
+  
+  if (FSR0_value < FSR_THRESH) {
+    analogWrite(motorPin, 255);
+  } else {
+    analogWrite(motorPin, 0);
+  }
+  //delay(50);
 }
 
 //Theatre-style crawling lights.
