@@ -2,7 +2,7 @@ import serial
 import numpy
 import datetime
 import dataset
-import easygui
+# import easygui
 import struct
 
 def checkInput(read, s):
@@ -22,7 +22,7 @@ accel_buffer = [0,0,0,0,0,0,0,0,0,0]
 FSR0_buffer=[0,0,0,0,0,0,0,0,0,0] 
 FSR1_buffer=[0,0,0,0,0,0,0,0,0,0] 
 FSR2_buffer=[0,0,0,0,0,0,0,0,0,0] 
-FSR3_buffer=[0,0,0,0,0,0,0,0,0,0] 
+# FSR3_buffer=[0,0,0,0,0,0,0,0,0,0] 
 old_force_key = ""
 old_IMU_key = ""
 elbowCount = 0
@@ -75,7 +75,7 @@ if __name__ == "__main__":
             FSR0_buffer[count%10]  = float(force[1])
             FSR1_buffer[count%10] =float(force[2])
             FSR2_buffer[count%10] =float(force[3])
-            FSR3_buffer[count%10] =float(force[4])
+            # FSR3_buffer[count%10] =float(force[4])
             
             count = count+1
             if (count ==10):
@@ -124,9 +124,9 @@ if __name__ == "__main__":
                 
              #print "FSR database" 
             if (key == old_force_key):
-                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR3= force[3]),['date'])
+                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]),['date'])
             else:
-                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR3= force[3]))
+                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]))
             old_force_key = key
 
         

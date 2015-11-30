@@ -128,9 +128,44 @@ var Mouse = (function() {
 
 	}
 
+	var pressureTracker= function() {
+        var onSuccess = function(data) {
+        	var upperCenter = Math.floor(data['FSR0']*5);
+			var lowerCenter = upperCenter-1;
+			var amount = (data['FSR0']*5)%1;
+			document.getElementById("mouse-wrist-" + upperCenter).style.opacity=amount;
+			if (upperCenter > 0) {
+				document.getElementById("mouse-wrist-" + lowerCenter).style.opacity=1;
+			}
+			upperCenter = Math.floor(data['FSR1']*5);
+			lowerCenter = upperCenter-1;
+			amount = (data['FSR1']*5)%1;
+			document.getElementById("mouse-left-" + upperCenter).style.opacity=amount;
+			if (upperCenter > 0) {
+				document.getElementById("mouse-left-" + lowerCenter).style.opacity=1;
+			}
+			upperCenter = Math.floor(data['FSR2']*5);
+			lowerCenter = upperCenter-1;
+			amount = (data['FSR2']*5)%1;
+			document.getElementById("mouse-right-" + upperCenter).style.opacity=amount;
+			if (upperCenter > 0) {
+				document.getElementById("mouse-right-" + lowerCenter).style.opacity=1;
+			}
+        };
+        var onFailure = function() { 
+            console.error('error'); 
+        };
+		makeGetRequest('/pressure_map', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/pressure_map', onSuccess, onFailure);
+		}, 50, that);
+
+	}
+
 	var start = function() {
-		motionBarGraph();
-		motionPieGraph();
+		// motionBarGraph();
+		// motionPieGraph();
+		pressureTracker();
 	};
 
 

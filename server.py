@@ -50,8 +50,7 @@ class update_pressure_map:
         key = str(datetime.date.today()) + " " + str(datetime.datetime.now().hour)
         data = dict({'FSR0':force_table.find_one(date=key)['FSR0'],
                      'FSR1':force_table.find_one(date=key)['FSR1'],
-                     'FSR2':force_table.find_one(date=key)['FSR2'],
-                     'FSR3':force_table.find_one(date=key)['FSR3']})
+                     'FSR2':force_table.find_one(date=key)['FSR2']})
         return json.dumps(data)
 #        
 if __name__ == "__main__":
