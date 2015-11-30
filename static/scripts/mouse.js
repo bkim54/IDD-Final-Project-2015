@@ -133,6 +133,7 @@ var Mouse = (function() {
         	data['FSR0'] = 1/data['FSR0'];
         	data['FSR1'] = 1/data['FSR1'];
         	data['FSR2'] = 1/data['FSR2'];
+        	console.log(data);
         	var upperCenter = Math.floor(data['FSR0']*5);
 			var lowerCenter = upperCenter-1;
 			var amount = (data['FSR0']*5)%1;
