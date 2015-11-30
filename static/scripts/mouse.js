@@ -87,9 +87,9 @@ var Mouse = (function() {
             console.error('error'); 
         };
 		makeGetRequest('/motion_bar', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
-		// }, 5000);
+        window.setInterval(function() {
+			makeGetRequest('/motion_bar', onSuccess, onFailure);
+		}, 5000);
 	}
 
 	var motionPieGraph= function() {
