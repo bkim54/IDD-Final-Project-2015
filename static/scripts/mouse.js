@@ -130,6 +130,9 @@ var Mouse = (function() {
 
 	var pressureTracker= function() {
         var onSuccess = function(data) {
+        	if (data['FSR0'] < 1) data['FSR0'] = 1;
+        	if (data['FSR1'] < 1) data['FSR1'] = 1;
+        	if (data['FSR2'] < 1) data['FSR2'] = 1;
         	data['FSR0'] = 1/data['FSR0'];
         	data['FSR1'] = 1/data['FSR1'];
         	data['FSR2'] = 1/data['FSR2'];
@@ -162,7 +165,7 @@ var Mouse = (function() {
 		makeGetRequest('/pressure_map', onSuccess, onFailure);
         window.setInterval(function() {
 			makeGetRequest('/pressure_map', onSuccess, onFailure);
-		}, 50, that);
+		}, 50);
 
 	}
 

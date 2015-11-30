@@ -48,9 +48,9 @@ class update_motion_bar:
 class update_pressure_map:
     def GET(self):
         key = str(datetime.date.today()) + " " + str(datetime.datetime.now().hour)
-        data = dict({'FSR0':force_table.find_one(date=key)['FSR0'],
-                     'FSR1':force_table.find_one(date=key)['FSR1'],
-                     'FSR2':force_table.find_one(date=key)['FSR2']})
+        data = dict({'FSR0':float(force_table.find_one(date=key)['FSR0']),
+                     'FSR1':float(force_table.find_one(date=key)['FSR1']),
+                     'FSR2':float(force_table.find_one(date=key)['FSR2'])})
         return json.dumps(data)
 #        
 if __name__ == "__main__":
