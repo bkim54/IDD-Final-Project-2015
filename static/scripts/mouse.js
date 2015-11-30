@@ -133,9 +133,12 @@ var Mouse = (function() {
         	if (data['FSR0'] < 1) data['FSR0'] = 1;
         	if (data['FSR1'] < 1) data['FSR1'] = 1;
         	if (data['FSR2'] < 1) data['FSR2'] = 1;
-        	data['FSR0'] = 1/data['FSR0'];
-        	data['FSR1'] = 1/data['FSR1'];
-        	data['FSR2'] = 1/data['FSR2'];
+        	data['FSR0'] = 9/data['FSR0'];
+        	data['FSR1'] = 9/data['FSR1'];
+        	data['FSR2'] = 9/data['FSR2'];
+        	if (data['FSR0'] > .999) data['FSR0'] = .999;
+        	if (data['FSR1'] > .999) data['FSR1'] = .999;
+        	if (data['FSR2'] > .999) data['FSR2'] = .999;
         	console.log(data);
         	var upperCenter = Math.floor(data['FSR0']*5);
 			var lowerCenter = upperCenter-1;
