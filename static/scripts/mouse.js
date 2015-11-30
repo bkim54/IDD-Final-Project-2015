@@ -163,8 +163,8 @@ var Mouse = (function() {
 	}
 
 	var start = function() {
-		// motionBarGraph();
-		// motionPieGraph();
+		motionBarGraph();
+		motionPieGraph();
 		pressureTracker();
 	};
 
