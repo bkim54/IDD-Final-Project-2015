@@ -13,6 +13,7 @@ import random
 
 urls = ('/motion_pie', 'update_motion_pie', 
         '/motion_bar', 'update_motion_bar',
+        '/pressure_map_history', 'update_pressure_map_history',
         '/pressure_map', 'update_pressure_map')
 
 app = web.application(urls, globals())
