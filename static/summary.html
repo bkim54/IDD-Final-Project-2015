@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+        <title>EZ EES</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/ico" href="images/computer-mouse-2.ico">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/Chart.min.js"></script>
+        <script type="text/javascript" src="scripts/mouse.js"></script>
+        <script type="text/javascript">
+            // This is a jQuery convention to say that once all the files
+            // load, the function Smile.start() should run.
+            // This function is defined in the smiles.js
+            $(function() {
+                // TODO: fix this thing
+                Mouse.start();
+            });
+        </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+        </div>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png">
+            </a>
+        <div class="buttons">
+            <a href="dashboard.html" class="button">Dashboard</a>
+            <a href="summary.html" class="button">Summary</a>
+        </div>
+    </header>
+    <img src="images/mouse.jpg" class="bootstrap-faker">
+<!--     <h1>EZ EES</h1>
+    <p class="subheading">Easy Ear-Elbow-Shoulder Alignment    </p>
+ -->
+    <div class="blurb">
+        <h2>Summary</h2>
+        <p class="summary">
+        Your summary for today:</p>
+        <p class="summary">- You moved your wrist 22% of the time</p>
+        <p class="summary">- Your left and right finger pressures were relaxed 83% of the time</p>
+        <p class="summary">- Your wrist was down 63% of the time</p>
+        <p class="summary">You mostly use your elbow to pivot. Good job!</p>
+        <p class="summary">Try to raise your wrist more.</p>
+        <p class="summary">Your grip is relaxed!</p>
+        <div class="blurb"></div>
+    </div>
+</body>

@@ -23,28 +23,24 @@
     <header>
         <div class="logo">
         </div>
-<<<<<<< HEAD
+            <a href="index.html" class="logo">
+                <img src="images/logo.png">
+            </a>
+        <div class="buttons">
+            <a href="dashboard.html" class="button">Dashboard</a>
+            <a href="summary.html" class="button">Summary</a>
+        </div>
     </header>
+
+    <img src="images/mouse.jpg" class="bootstrap-faker">
     <div class="dashboard">
         <div class="dashboard-text">
             Dashboard
-        </div>
+        </div><!-- 
+        <input type="radio" name="tabs" id="tab1" checked />
+        <label for="tab1">Pressure Tracker</label> -->
         <div class="dashboard-inner">
-            <div class="graph-elem">
-                <div class="graph-elem-title">
-                    Motion Tracker
-                </div>
-                <canvas class="graph" id="motion-tracker-graph">
-                </canvas>
-            </div>
-            <div class="graph-elem">
-                <div class="graph-elem-title">
-                    Motion Bar Graph
-                </div>
-                <canvas class="graph" id="motion-bar-graph">
-                </canvas>
-            </div>
-            <div class="graph-elem">
+            <div class="graph-elem" id="pressure">
                 <div class="graph-elem-title">
                     Pressure Tracker
                 </div>
@@ -67,6 +63,21 @@
                     <img src="images/mouse-wrist-4.png" id="mouse-wrist-4" class="mouse-wrist-4">
                 </div>
             </div>
+            <div class="graph-elem" id="pie">
+                <div class="graph-elem-title">
+                    Wrist vs Elbow (current hour)
+                </div>
+                <canvas class="graph" id="motion-tracker-graph">
+                </canvas>
+            </div>
+            <div class="graph-elem" id="bar">
+                <div class="graph-elem-title">
+                    Wrist vs Elbow
+                </div>
+                <canvas class="graph" id="motion-bar-graph">
+                </canvas>
+            </div>
+
 <!--             <div class="graph-elem">
                 <div class="graph-elem-title">
                     Pressure Map
@@ -79,25 +90,8 @@
                     Motion Pie Graph
                 </div>
                 <canvas class="graph" id="motion-pie-graph">
-                </canvas> -->
-            </div>
-=======
-            <a href="index.html" class="logo">
-                <img src="images/logo.png">
-            </a>
-        <div class="buttons">
-            <a href="dashboard.html" class="button">Dashboard</a>
-            <a href="summary.html" class="button">Summary</a>
->>>>>>> bb8f4a1c31d31a4f0e5603b01e98dd08f6549ffc
+                </canvas>
+            </div> -->
         </div>
-    </header>
-    <img src="images/mouse.jpg" class="bootstrap-faker">
-    <h1>EZ EES</h1>
-    <p class="subheading">Easy Ear-Elbow-Shoulder Alignment    </p>
-
-    <div class="blurb">
-        <h2>Our Mission</h2>
-        <p class="mission">EZ EES is a smart computer mouse that promotes ergonomic working posture in the workplace by providing force and motion feedback and stopping bad habits that lead to common shoulder and wrist injuries from improper mouse use.
-        </p>
     </div>
 </body>

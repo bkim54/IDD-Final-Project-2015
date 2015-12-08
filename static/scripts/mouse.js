@@ -49,20 +49,20 @@ var Mouse = (function() {
 		    labels: ["8-9AM", "9-10AM", "10-11AM", "11-12PM", "12-1PM", "1-2PM", "2-3PM"],
 		    datasets: [
 		        {
-		            label: "Elbow",
-		            fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
-		            highlightFill: "rgba(220,220,220,0.75)",
-		            highlightStroke: "rgba(220,220,220,1)",
-		            data: [65, 59, 80, 81, 56, 55, 40]
-		        },
-		        {
 		            label: "Wrist",
-		            fillColor: "rgba(151,187,205,0.5)",
-		            strokeColor: "rgba(151,187,205,0.8)",
+		            fillColor: "#aaaaaa",
+		            strokeColor: "#888888",
 		            highlightFill: "rgba(151,187,205,0.75)",
 		            highlightStroke: "rgba(151,187,205,1)",
 		            data: [28, 48, 40, 19, 86, 27, 90]
+		        },
+		        {
+		            label: "Elbow",
+		            fillColor: "#86AFFD",
+		            strokeColor: "#668FDD",
+		            highlightFill: "rgba(220,220,220,0.75)",
+		            highlightStroke: "rgba(220,220,220,1)",
+		            data: [65, 59, 80, 81, 56, 55, 40]
 		        }
 		    ]
 		};
@@ -86,10 +86,17 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
+<<<<<<< HEAD
 		makeGetRequest('/motion_bar', onSuccess, onFailure);
         window.setInterval(function() {
 			makeGetRequest('/motion_bar', onSuccess, onFailure);
 		}, 5000);
+=======
+		// makeGetRequest('/motion_bar', onSuccess, onFailure);
+  //       window.setInterval(function() {
+		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
+		// }, 5000);
+>>>>>>> bb8f4a1c31d31a4f0e5603b01e98dd08f6549ffc
 	}
 
 	var motionPieGraph= function() {
@@ -100,14 +107,14 @@ var Mouse = (function() {
 		Chart.defaults.global.scaleFontSize = 20;
 		var graphData = [
 		    {
-		        value: 5,
+		        value: 17,
 		        color:"#aaaaaa",
 		        highlight: "#5F5A5E",
 		        label: "Wrist"
 		    },
 		    {
 		        value: 5,
-		        color: "#76BFFD",
+		        color: "#86AFFD",
 		        highlight: "#5AD3D1",
 		        label: "Elbow"
 		    }
@@ -121,10 +128,10 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-		makeGetRequest('/motion_pie', onSuccess, onFailure);
-        window.setInterval(function() {
-			makeGetRequest('/motion_pie', onSuccess, onFailure);
-		}, 5000);
+		// makeGetRequest('/motion_pie', onSuccess, onFailure);
+  //       window.setInterval(function() {
+		// 	makeGetRequest('/motion_pie', onSuccess, onFailure);
+		// }, 5000);
 
 	}
 
@@ -174,19 +181,30 @@ var Mouse = (function() {
 			}
         };
         var onFailure = function() { 
-            console.error('error'); 
+            console.error('error');
+            // onSuccess({'FSR0':80, 'FSR1':40, 'FSR2':60});
         };
-		makeGetRequest('/pressure_map', onSuccess, onFailure);
-        window.setInterval(function() {
-			makeGetRequest('/pressure_map', onSuccess, onFailure);
-		}, 50);
 
-	}
+        onSuccess({'FSR0':20, 'FSR1':9, 'FSR2':75});
+        checkMouseSize();
+		// makeGetRequest('/pressure_map', onSuccess, onFailure);
+  //       window.setInterval(function() {
+		// 	makeGetRequest('/pressure_map', onSuccess, onFailure);
+		// }, 9999);
+
+	};
+
+	var checkMouseSize = function() {
+		console.log($(".mouse").height());
+		$(".mouse-images").height($(".mouse").height()*1.2);
+	};
 
 	var start = function() {
+		checkMouseSize();
 		motionBarGraph();
 		motionPieGraph();
 		pressureTracker();
+		window.addEventListener("resize", checkMouseSize);
 	};
 
 
