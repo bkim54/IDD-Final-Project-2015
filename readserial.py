@@ -31,7 +31,7 @@ notWritten = True;
 
 if __name__ == "__main__":    
     try:
-        ser = serial.Serial('/COM7',9600)
+        ser = serial.Serial('/COM10',9600)
         connected = True
         db = dataset.connect('sqlite:///nbedmbed.db')       
         motion_table = db['motion']
@@ -84,7 +84,7 @@ if __name__ == "__main__":
                 count = 0
             gyro = numpy.sum(gyro_buffer)/10.0
             accel = numpy.sum(accel_buffer)/10.0
-            force = [numpy.sum(FSR0_buffer)/10.0, numpy.sum(FSR1_buffer)/10.0, numpy.sum(FSR2_buffer)/10.0, numpy.sum(FSR3_buffer)/10.0]
+            #force = [numpy.sum(FSR0_buffer)/10.0, numpy.sum(FSR1_buffer)/10.0, numpy.sum(FSR2_buffer)/10.0, numpy.sum(FSR3_buffer)/10.0]
             #print force
             #print "accel: " +str(accel)
             #print "gyro: " + str(gyro)
@@ -96,7 +96,7 @@ if __name__ == "__main__":
                     if (key == old_IMU_key):
                         wristCount = wristCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
-                        print "update database: current hour, wrist_count"
+                        #print "update database: current hour, wrist_count"
 #                        if notWritten:
 #                            ser.write("1".encode());
 #                            ser.write("255".encode());
@@ -114,7 +114,7 @@ if __name__ == "__main__":
                     if (key == old_IMU_key):
                         elbowCount = elbowCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
-                        print "update database: current hour, elbow_count"      
+                        #print "update database: current hour, elbow_count"      
 #                        ser.write("0".encode());
 #                        ser.write("0".encode());
                     else:
@@ -126,9 +126,11 @@ if __name__ == "__main__":
                 
              #print "FSR database" 
             if (key == old_force_key):
-                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]),['date'])
+                #print force[1], force[2], force[3]
+                force_table.update(dict(date=key, FSR0 = force[1], FSR1 = force[2], FSR2= force[3]),['date'])
             else:
-                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]))
+                #print force[1], force[2], force[3]
+                force_table.insert(dict(date=key, FSR0 = force[1], FSR1 = force[2], FSR2= force[3]))
             old_force_key = key
 
         

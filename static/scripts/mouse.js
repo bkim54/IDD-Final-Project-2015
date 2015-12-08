@@ -87,9 +87,9 @@ var Mouse = (function() {
             console.error('error'); 
         };
 		makeGetRequest('/motion_bar', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
-		// }, 5000);
+        window.setInterval(function() {
+			makeGetRequest('/motion_bar', onSuccess, onFailure);
+		}, 5000);
 	}
 
 	var motionPieGraph= function() {
@@ -133,33 +133,44 @@ var Mouse = (function() {
         	if (data['FSR0'] < 1) data['FSR0'] = 1;
         	if (data['FSR1'] < 1) data['FSR1'] = 1;
         	if (data['FSR2'] < 1) data['FSR2'] = 1;
-        	data['FSR0'] = 9/data['FSR0'];
-        	data['FSR1'] = 9/data['FSR1'];
-        	data['FSR2'] = 9/data['FSR2'];
+        	// console.log('FSR0 ' + data['FSR0'] + '   FSR1 ' + data['FSR1']);
+        	data['FSR0'] = 1 - (data['FSR0']-84)/(1023-84);
+        	data['FSR1'] = 1 - (data['FSR1']-230)/(1023-230);
+        	data['FSR2'] = Math.pow(60/(data['FSR2'])-.2, .6);
         	if (data['FSR0'] > .999) data['FSR0'] = .999;
         	if (data['FSR1'] > .999) data['FSR1'] = .999;
         	if (data['FSR2'] > .999) data['FSR2'] = .999;
-        	console.log(data);
+        	// console.log(data);
         	var upperCenter = Math.floor(data['FSR0']*5);
 			var lowerCenter = upperCenter-1;
 			var amount = (data['FSR0']*5)%1;
-			document.getElementById("mouse-wrist-" + upperCenter).style.opacity=amount;
+			// console.log(upperCenter, lowerCenter, amount);
+			document.getElementById("mouse-left-" + upperCenter).style.opacity=amount;
+			for (var i = upperCenter+1; i < 5; i++) {
+				document.getElementById("mouse-left-" + i).style.opacity=0;				
+			}
 			if (upperCenter > 0) {
-				document.getElementById("mouse-wrist-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-left-" + lowerCenter).style.opacity=1;
 			}
 			upperCenter = Math.floor(data['FSR1']*5);
 			lowerCenter = upperCenter-1;
 			amount = (data['FSR1']*5)%1;
-			document.getElementById("mouse-left-" + upperCenter).style.opacity=amount;
+			document.getElementById("mouse-right-" + upperCenter).style.opacity=amount;
+			for (var i = upperCenter+1; i < 5; i++) {
+				document.getElementById("mouse-right-" + i).style.opacity=0;				
+			}
 			if (upperCenter > 0) {
-				document.getElementById("mouse-left-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-right-" + lowerCenter).style.opacity=1;
 			}
 			upperCenter = Math.floor(data['FSR2']*5);
 			lowerCenter = upperCenter-1;
 			amount = (data['FSR2']*5)%1;
-			document.getElementById("mouse-right-" + upperCenter).style.opacity=amount;
+			document.getElementById("mouse-wrist-" + upperCenter).style.opacity=amount;
+			for (var i = upperCenter+1; i < 5; i++) {
+				document.getElementById("mouse-wrist-" + i).style.opacity=0;				
+			}
 			if (upperCenter > 0) {
-				document.getElementById("mouse-right-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-wrist-" + lowerCenter).style.opacity=1;
 			}
         };
         var onFailure = function() { 
