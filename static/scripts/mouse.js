@@ -86,17 +86,10 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-<<<<<<< HEAD
 		makeGetRequest('/motion_bar', onSuccess, onFailure);
         window.setInterval(function() {
 			makeGetRequest('/motion_bar', onSuccess, onFailure);
-		}, 5000);
-=======
-		// makeGetRequest('/motion_bar', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
-		// }, 5000);
->>>>>>> bb8f4a1c31d31a4f0e5603b01e98dd08f6549ffc
+		}, 1000);
 	}
 
 	var motionPieGraph= function() {
@@ -128,10 +121,10 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-		// makeGetRequest('/motion_pie', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_pie', onSuccess, onFailure);
-		// }, 5000);
+		makeGetRequest('/motion_pie', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/motion_pie', onSuccess, onFailure);
+		}, 1000);
 
 	}
 
@@ -140,44 +133,33 @@ var Mouse = (function() {
         	if (data['FSR0'] < 1) data['FSR0'] = 1;
         	if (data['FSR1'] < 1) data['FSR1'] = 1;
         	if (data['FSR2'] < 1) data['FSR2'] = 1;
-        	// console.log('FSR0 ' + data['FSR0'] + '   FSR1 ' + data['FSR1']);
-        	data['FSR0'] = 1 - (data['FSR0']-84)/(1023-84);
-        	data['FSR1'] = 1 - (data['FSR1']-230)/(1023-230);
-        	data['FSR2'] = Math.pow(60/(data['FSR2'])-.2, .6);
-        	if (data['FSR0'] > .999) data['FSR0'] = .999;
-        	if (data['FSR1'] > .999) data['FSR1'] = .999;
-        	if (data['FSR2'] > .999) data['FSR2'] = .999;
-        	// console.log(data);
+        	data['FSR0'] = (1024 - data['FSR0'] - 20)/(1024-20);
+        	data['FSR1'] = (1024 - data['FSR1'] - 30)/(1024-30);
+        	data['FSR2'] = (1024 - data['FSR2'] - 30)/(1024-30) + Math.random()*.05 - .025;
+        	if (data['FSR0'] > .999) data['FSR0'] = .999; // wrist - 20
+        	if (data['FSR1'] > .999) data['FSR1'] = .999; // left - 30
+        	if (data['FSR2'] > .999) data['FSR2'] = .999; // right
+        	console.log(data);
         	var upperCenter = Math.floor(data['FSR0']*5);
 			var lowerCenter = upperCenter-1;
 			var amount = (data['FSR0']*5)%1;
-			// console.log(upperCenter, lowerCenter, amount);
-			document.getElementById("mouse-left-" + upperCenter).style.opacity=amount;
-			for (var i = upperCenter+1; i < 5; i++) {
-				document.getElementById("mouse-left-" + i).style.opacity=0;				
-			}
+			document.getElementById("mouse-wrist-" + upperCenter).style.opacity=amount;
 			if (upperCenter > 0) {
-				document.getElementById("mouse-left-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-wrist-" + lowerCenter).style.opacity=1;
 			}
 			upperCenter = Math.floor(data['FSR1']*5);
 			lowerCenter = upperCenter-1;
 			amount = (data['FSR1']*5)%1;
-			document.getElementById("mouse-right-" + upperCenter).style.opacity=amount;
-			for (var i = upperCenter+1; i < 5; i++) {
-				document.getElementById("mouse-right-" + i).style.opacity=0;				
-			}
+			document.getElementById("mouse-left-" + upperCenter).style.opacity=amount;
 			if (upperCenter > 0) {
-				document.getElementById("mouse-right-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-left-" + lowerCenter).style.opacity=1;
 			}
 			upperCenter = Math.floor(data['FSR2']*5);
 			lowerCenter = upperCenter-1;
 			amount = (data['FSR2']*5)%1;
-			document.getElementById("mouse-wrist-" + upperCenter).style.opacity=amount;
-			for (var i = upperCenter+1; i < 5; i++) {
-				document.getElementById("mouse-wrist-" + i).style.opacity=0;				
-			}
+			document.getElementById("mouse-right-" + upperCenter).style.opacity=amount;
 			if (upperCenter > 0) {
-				document.getElementById("mouse-wrist-" + lowerCenter).style.opacity=1;
+				document.getElementById("mouse-right-" + lowerCenter).style.opacity=1;
 			}
         };
         var onFailure = function() { 
@@ -185,12 +167,12 @@ var Mouse = (function() {
             // onSuccess({'FSR0':80, 'FSR1':40, 'FSR2':60});
         };
 
-        onSuccess({'FSR0':20, 'FSR1':9, 'FSR2':75});
+        // onSuccess({'FSR0':20, 'FSR1':9, 'FSR2':75});
         checkMouseSize();
-		// makeGetRequest('/pressure_map', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/pressure_map', onSuccess, onFailure);
-		// }, 9999);
+		makeGetRequest('/pressure_map', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/pressure_map', onSuccess, onFailure);
+		}, 30);
 
 	};
 

@@ -12,8 +12,8 @@
 #define GYRO_THRESH 0.5
 #define MAG_THRESH 8.0
 #define FSR0_THRESH 20.0
-#define FSR1_THRESH 30.0
-
+#define FSR1_THRESH 60.0
+#define FSR2_THRESH 10.0
 /*Define LEDSTRIP */
 #define PIN 5
 // Parameter 1 = number of pixels in strip
@@ -195,6 +195,7 @@ void loop(void)
        if(gyro_mag > GYRO_THRESH) { 
          //Serial.println(gyro_mag);
         theaterChase(strip.Color(127, 0, 0), 25);
+        strip.show();
         //analogWrite(motorPin, 255);
       } 
     } 
@@ -203,13 +204,20 @@ void loop(void)
       //if(gyro_mag > GYRO_THRESH)
          //Serial.println(abs(header-prev_header));
          //Serial.println(gyro_mag);
-      theaterChase(strip.Color(0, 0, 0), 10);
+      //theaterChase(strip.Color(0, 0, 0), 10);
+      for (int i=0; i < strip.numPixels(); i++) {
+        strip.setPixelColor(i, 0);    //turn every  pixel on
+     }
+     strip.show();
       //analogWrite(motorPin, 0);
     }
   } else { //not moving so reset the resting state
     //Serial.println(accel_mag);
     prev_header = header;
-    theaterChase(strip.Color(0, 0, 0), 10);
+    //theaterChase(strip.Color(0, 0, 0), 10);
+    for (int i=0; i < strip.numPixels(); i++) {
+        strip.setPixelColor(i, 0);    //turn every  pixel on
+    }
     //analogWrite(motorPin, 0);
   }
   
@@ -237,4 +245,8 @@ void theaterChase(uint32_t c, uint8_t wait) {
       }
     }
   }
+  for (int i=0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(i, 0);    //turn every  pixel on
+  }
+  strip.show();
 }
