@@ -61,6 +61,7 @@ class update_summary:
         wristSum = 0
         elbowSum = 0
         FSRSum = [0,0,0]
+        FSRcount = 0
         output = {key, []}
         for m in db['motion']:
             if m['date'].startswith(str(datetime.date.today())):
@@ -68,13 +69,29 @@ class update_summary:
                 elbowSum += m['elbow']
         for m in db['force']:
             if m['date'].startswith(str(datetime.date.today())):
-                FSRSum[0] += m['FSR0']
-                FSRSum[1] += m['FSR1']
-                FSRSum[2] += m['FSR2']
+                FSRSum[0] += 0 if m['FSR0Total']/m['Count'] < 150 else 1
+                FSRSum[1] += 0 if m['FSR1Total']/m['Count'] < 600 else 1
+                FSRSum[2] += 0 if m['FSR2Total']/m['Count'] < 600 else 1
+                FSRcount += 1
         output[key].append('Your summary for today:')
-        output[key].append('You moved your wrist ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
-        output[key].append('Your fingers were relaxed ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
-        output[key].append('Your wrist was down ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
+        wristMove = round(100*wristSum/(wristSum+elbowSum + 0.0))
+        fingerRelax = round(100*FSRSum[1]/(FSRSum[1]+elbowSum + 0.0))/2 + round(100*FSRSum[1]/(FSRSum[1]+elbowSum + 0.0))/2
+        wristRelax = round(100*FSRSum[0]/(FSRSum[1]+elbowSum + 0.0))
+        output[key].append('You moved your wrist ' + str(wristMove) + "% of the time.")
+        output[key].append('Your fingers were relaxed ' + str(fingerRelax) + "% of the time.")
+        output[key].append('Your wrist was relaxed ' + str(wristRelax) + "% of the time.")
+        if wristMove > 30:
+            output[key].append('Try to move from your elbow a bit more!');
+        else:
+            output[key].append('You are moving from your elbow correctly!')
+        if fingerRelax > 30:
+            output[key].append('Try to relax your fingers a bit more!');
+        else:
+            output[key].append('Your fingers are usually relaxed!')
+        if wristRelax > 30:
+            output[key].append('Try to relax your wrist a bit more!');
+        else:
+            output[key].append('Your wrist is nice and relaxed!')
         
         return json.dumps(output)
 

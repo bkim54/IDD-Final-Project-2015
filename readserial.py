@@ -126,9 +126,9 @@ if __name__ == "__main__":
                 
              #print "FSR database" 
             if (key == old_force_key):
-                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]),['date'])
+                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR0Total=force_table[key]['FSR0']+force[0],FSR1Total=force_table[key]['FSR1']+force[1],FSR2Total=force_table[key]['FSR2']+force[2], Count=force_table[key]['Count']+1),['date'])
             else:
-                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2]))
+                force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR0Total=0, FSR1Total=0, FSR2Total=0, Count=0))
             old_force_key = key
 
         

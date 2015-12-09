@@ -86,10 +86,10 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-		// makeGetRequest('/motion_bar', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_bar', onSuccess, onFailure);
-		// }, 5000);
+		makeGetRequest('/motion_bar', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/motion_bar', onSuccess, onFailure);
+		}, 1000);
 	}
 
 	var motionPieGraph= function() {
@@ -121,10 +121,10 @@ var Mouse = (function() {
         var onFailure = function() { 
             console.error('error'); 
         };
-		// makeGetRequest('/motion_pie', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/motion_pie', onSuccess, onFailure);
-		// }, 5000);
+		makeGetRequest('/motion_pie', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/motion_pie', onSuccess, onFailure);
+		}, 1000);
 
 	}
 
@@ -133,12 +133,12 @@ var Mouse = (function() {
         	if (data['FSR0'] < 1) data['FSR0'] = 1;
         	if (data['FSR1'] < 1) data['FSR1'] = 1;
         	if (data['FSR2'] < 1) data['FSR2'] = 1;
-        	data['FSR0'] = 9/data['FSR0'];
-        	data['FSR1'] = 9/data['FSR1'];
-        	data['FSR2'] = 9/data['FSR2'];
-        	if (data['FSR0'] > .999) data['FSR0'] = .999;
-        	if (data['FSR1'] > .999) data['FSR1'] = .999;
-        	if (data['FSR2'] > .999) data['FSR2'] = .999;
+        	data['FSR0'] = (1024 - data['FSR0'] - 20)/(1024-20);
+        	data['FSR1'] = (1024 - data['FSR1'] - 30)/(1024-30);
+        	data['FSR2'] = (1024 - data['FSR2'] - 30)/(1024-30) + Math.random()*.05 - .025;
+        	if (data['FSR0'] > .999) data['FSR0'] = .999; // wrist - 20
+        	if (data['FSR1'] > .999) data['FSR1'] = .999; // left - 30
+        	if (data['FSR2'] > .999) data['FSR2'] = .999; // right
         	console.log(data);
         	var upperCenter = Math.floor(data['FSR0']*5);
 			var lowerCenter = upperCenter-1;
@@ -167,12 +167,12 @@ var Mouse = (function() {
             // onSuccess({'FSR0':80, 'FSR1':40, 'FSR2':60});
         };
 
-        onSuccess({'FSR0':20, 'FSR1':9, 'FSR2':75});
+        // onSuccess({'FSR0':20, 'FSR1':9, 'FSR2':75});
         checkMouseSize();
-		// makeGetRequest('/pressure_map', onSuccess, onFailure);
-  //       window.setInterval(function() {
-		// 	makeGetRequest('/pressure_map', onSuccess, onFailure);
-		// }, 9999);
+		makeGetRequest('/pressure_map', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/pressure_map', onSuccess, onFailure);
+		}, 30);
 
 	};
 

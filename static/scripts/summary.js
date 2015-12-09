@@ -53,7 +53,11 @@ var Summary = (function() {
 		var onFailure = function() {
 			console.error('error');
 		};
-		onSuccess({'elems':['Your summary for today:','test test test 1', 'test test test 2', 'test test test 3', 'test test test 4']});
+		// onSuccess({'elems':['Your summary for today:','test test test 1', 'test test test 2', 'test test test 3', 'test test test 4']});
+		makeGetRequest('/summary', onSuccess, onFailure);
+        window.setInterval(function() {
+			makeGetRequest('/summary', onSuccess, onFailure);
+		}, 30);
 	};
 
 
