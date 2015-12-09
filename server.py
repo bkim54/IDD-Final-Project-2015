@@ -14,6 +14,7 @@ import random
 urls = ('/motion_pie', 'update_motion_pie', 
         '/motion_bar', 'update_motion_bar',
         '/pressure_map_history', 'update_pressure_map_history',
+        '/summary', 'update_summary',
         '/pressure_map', 'update_pressure_map')
 
 app = web.application(urls, globals())
@@ -53,6 +54,30 @@ class update_pressure_map:
                      'FSR1':float(force_table.find_one(date=key)['FSR1']),
                      'FSR2':float(force_table.find_one(date=key)['FSR2'])})
         return json.dumps(data)
+
+class update_summary:
+    def GET(self):
+        key = 'elems'
+        wristSum = 0
+        elbowSum = 0
+        FSRSum = [0,0,0]
+        output = {key, []}
+        for m in db['motion']:
+            if m['date'].startswith(str(datetime.date.today())):
+                wristSum += m['wrist']
+                elbowSum += m['elbow']
+        for m in db['force']:
+            if m['date'].startswith(str(datetime.date.today())):
+                FSRSum[0] += m['FSR0']
+                FSRSum[1] += m['FSR1']
+                FSRSum[2] += m['FSR2']
+        output[key].append('Your summary for today:')
+        output[key].append('You moved your wrist ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
+        output[key].append('Your fingers were relaxed ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
+        output[key].append('Your wrist was down ' + str(round(100*wristSum/(wristSum+elbowSum + 0.0))) + "% of the time.")
+        
+        return json.dumps(output)
+
 #        
 if __name__ == "__main__":
     app.run()
