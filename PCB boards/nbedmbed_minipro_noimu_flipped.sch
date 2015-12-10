@@ -142,34 +142,6 @@
 <libraries>
 <library name="adafruit">
 <packages>
-<package name="1X10-BIG">
-<wire x1="-12.7" y1="1.27" x2="12.7" y2="1.27" width="0.127" layer="21"/>
-<wire x1="12.7" y1="1.27" x2="12.7" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-1.27" x2="-12.7" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-12.7" y1="-1.27" x2="-12.7" y2="1.27" width="0.127" layer="21"/>
-<pad name="1" x="-11.43" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="2" x="-8.89" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="3" x="-6.35" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="4" x="-3.81" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="5" x="-1.27" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="6" x="1.27" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="7" x="3.81" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="8" x="6.35" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="9" x="8.89" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<pad name="10" x="11.43" y="0" drill="1.016" diameter="1.778" shape="octagon" rot="R90"/>
-<text x="-11.5062" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-11.43" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="3.556" y1="-0.254" x2="4.064" y2="0.254" layer="51"/>
-<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
-<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
-<rectangle x1="-4.064" y1="-0.254" x2="-3.556" y2="0.254" layer="51"/>
-<rectangle x1="-6.604" y1="-0.254" x2="-6.096" y2="0.254" layer="51"/>
-<rectangle x1="-9.144" y1="-0.254" x2="-8.636" y2="0.254" layer="51"/>
-<rectangle x1="-11.684" y1="-0.254" x2="-11.176" y2="0.254" layer="51"/>
-<rectangle x1="6.096" y1="-0.254" x2="6.604" y2="0.254" layer="51"/>
-<rectangle x1="8.636" y1="-0.254" x2="9.144" y2="0.254" layer="51"/>
-<rectangle x1="11.176" y1="-0.254" x2="11.684" y2="0.254" layer="51"/>
-</package>
 <package name="1X06">
 <description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
 <wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
@@ -406,24 +378,6 @@
 </package>
 </packages>
 <symbols>
-<symbol name="PINHD10">
-<wire x1="-6.35" y1="-15.24" x2="1.27" y2="-15.24" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="-15.24" x2="1.27" y2="12.7" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="12.7" x2="-6.35" y2="12.7" width="0.4064" layer="94"/>
-<wire x1="-6.35" y1="12.7" x2="-6.35" y2="-15.24" width="0.4064" layer="94"/>
-<text x="-6.35" y="13.335" size="1.778" layer="95">&gt;NAME</text>
-<text x="-6.35" y="-17.78" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="1" x="-2.54" y="10.16" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="2" x="-2.54" y="7.62" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="3" x="-2.54" y="5.08" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="4" x="-2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="5" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="6" x="-2.54" y="-2.54" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="7" x="-2.54" y="-5.08" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="8" x="-2.54" y="-7.62" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="9" x="-2.54" y="-10.16" visible="pad" length="short" direction="pas" function="dot"/>
-<pin name="10" x="-2.54" y="-12.7" visible="pad" length="short" direction="pas" function="dot"/>
-</symbol>
 <symbol name="PINHD6">
 <wire x1="-6.35" y1="-7.62" x2="1.27" y2="-7.62" width="0.4064" layer="94"/>
 <wire x1="1.27" y1="-7.62" x2="1.27" y2="10.16" width="0.4064" layer="94"/>
@@ -456,33 +410,6 @@
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="PINHD-1X10">
-<description>&lt;b&gt;Pin header 1x10 0.1" spacing&lt;/b&gt;
-&lt;p&gt;
-With round pins</description>
-<gates>
-<gate name="G$1" symbol="PINHD10" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="1X10-BIG">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="10" pad="10"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
-<connect gate="G$1" pin="6" pad="6"/>
-<connect gate="G$1" pin="7" pad="7"/>
-<connect gate="G$1" pin="8" pad="8"/>
-<connect gate="G$1" pin="9" pad="9"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="PINHD-1X6" prefix="JP" uservalue="yes">
 <description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
 <gates>
@@ -2337,239 +2264,6 @@ V</text>
 </deviceset>
 </devicesets>
 </library>
-<library name="holes">
-<description>&lt;b&gt;Mounting Holes and Pads&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="2,8">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 2.8 mm with drill center</description>
-<wire x1="-1.778" y1="0" x2="0" y2="-1.778" width="2.286" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="1.778" x2="1.778" y2="0" width="2.286" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="0.635" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="2.921" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="40"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="39"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="1.5" width="0.2032" layer="21"/>
-<hole x="0" y="0" drill="2.8"/>
-</package>
-<package name="3,0">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.0 mm with drill center</description>
-<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="39"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="40"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="1.6" width="0.2032" layer="21"/>
-<text x="-1.27" y="-3.81" size="1.27" layer="48">3,0</text>
-<hole x="0" y="0" drill="3"/>
-</package>
-<package name="3,3">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.3 mm with drill center</description>
-<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="3.048" width="2.54" layer="39"/>
-<circle x="0" y="0" radius="3.048" width="2.54" layer="40"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="1.75" width="0.2032" layer="21"/>
-<hole x="0" y="0" drill="3.3"/>
-</package>
-<package name="3,6">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.6 mm with drill center</description>
-<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="3.048" width="2.7686" layer="39"/>
-<circle x="0" y="0" radius="3.048" width="2.7686" layer="40"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="1.9" width="0.2032" layer="21"/>
-<hole x="0" y="0" drill="3.6"/>
-</package>
-<package name="4,1">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 4.1 mm with drill center</description>
-<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="4.4958" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="39"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="40"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="41"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="42"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="43"/>
-<circle x="0" y="0" radius="2.15" width="0.1524" layer="21"/>
-<hole x="0" y="0" drill="4.1"/>
-</package>
-<package name="4,5">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 4.5 mm with drill center</description>
-<wire x1="4.445" y1="0" x2="2.159" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="4.445" x2="0" y2="2.159" width="0.0508" layer="21"/>
-<wire x1="-2.159" y1="0" x2="-4.445" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="-2.159" x2="0" y2="-4.445" width="0.0508" layer="21"/>
-<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="4.4958" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="39"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="40"/>
-<circle x="0" y="0" radius="3.8184" width="2.54" layer="41"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="42"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="43"/>
-<circle x="0" y="0" radius="2.35" width="0.1524" layer="21"/>
-<text x="-1.27" y="-4.445" size="1.27" layer="48">4,5</text>
-<hole x="0" y="0" drill="4.5"/>
-</package>
-<package name="5,0">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 5.0 mm with drill center</description>
-<wire x1="4.445" y1="0" x2="2.159" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="4.445" x2="0" y2="2.159" width="0.0508" layer="21"/>
-<wire x1="-2.159" y1="0" x2="-4.445" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="-2.159" x2="0" y2="-4.445" width="0.0508" layer="21"/>
-<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="4.4958" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="39"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="40"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="43"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="42"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="41"/>
-<circle x="0" y="0" radius="2.6" width="0.1524" layer="21"/>
-<text x="-1.27" y="-4.445" size="1.27" layer="48">5,0</text>
-<hole x="0" y="0" drill="5"/>
-</package>
-<package name="3,2">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.2 mm with drill center</description>
-<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="39"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="40"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="3.048" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="1.7" width="0.2032" layer="21"/>
-<hole x="0" y="0" drill="3.2"/>
-</package>
-<package name="4,3">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 4.3 mm with drill center</description>
-<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="4.4958" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.1524" layer="51"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="39"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="40"/>
-<circle x="0" y="0" radius="3.8184" width="2.54" layer="41"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="42"/>
-<circle x="0" y="0" radius="3.81" width="2.54" layer="43"/>
-<circle x="0" y="0" radius="2.25" width="0.1524" layer="21"/>
-<hole x="0" y="0" drill="4.3"/>
-</package>
-<package name="5,5">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 5.5 mm with drill center</description>
-<wire x1="4.445" y1="0" x2="2.159" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="4.445" x2="0" y2="2.159" width="0.0508" layer="21"/>
-<wire x1="-2.159" y1="0" x2="-4.445" y2="0" width="0.0508" layer="21"/>
-<wire x1="0" y1="-2.159" x2="0" y2="-4.445" width="0.0508" layer="21"/>
-<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="4.4958" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="39"/>
-<circle x="0" y="0" radius="4.699" width="4.5466" layer="40"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="43"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="42"/>
-<circle x="0" y="0" radius="4.826" width="2.54" layer="41"/>
-<circle x="0" y="0" radius="2.85" width="0.1524" layer="21"/>
-<hole x="0" y="0" drill="5.5"/>
-</package>
-</packages>
-<symbols>
-<symbol name="MOUNT-HOLE">
-<wire x1="0" y1="1.27" x2="1.27" y2="0" width="1.524" layer="94" curve="-90" cap="flat"/>
-<wire x1="-1.27" y1="0" x2="0" y2="-1.27" width="1.524" layer="94" curve="90" cap="flat"/>
-<wire x1="-0.508" y1="0" x2="0.508" y2="0" width="0.0508" layer="94"/>
-<wire x1="0" y1="0.508" x2="0" y2="-0.508" width="0.0508" layer="94"/>
-<circle x="0" y="0" radius="2.032" width="0.0508" layer="94"/>
-<circle x="0" y="0" radius="0.508" width="0.0508" layer="94"/>
-<text x="2.032" y="0.5842" size="1.778" layer="95">&gt;NAME</text>
-<text x="2.032" y="-2.4638" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="MOUNT-HOLE" prefix="H">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; with drill center marker</description>
-<gates>
-<gate name="G$1" symbol="MOUNT-HOLE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="2.8" package="2,8">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3.0" package="3,0">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3.3" package="3,3">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3.6" package="3,6">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="4.1" package="4,1">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="4.5" package="4,5">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="5.0" package="5,0">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="3.2" package="3,2">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="4.3" package="4,3">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="5.5" package="5,5">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2580,7 +2274,6 @@ V</text>
 </class>
 </classes>
 <parts>
-<part name="IMU" library="adafruit" deviceset="PINHD-1X10" device="" value="9D0F"/>
 <part name="Q1" library="SparkFun-DiscreteSemi" deviceset="TRANSISTOR_NPN" device="TO-92-AMMO"/>
 <part name="D1" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="1N4148"/>
 <part name="R1" library="SparkFun-Resistors" deviceset="RESISTOR" device="PTH-1/6W" value="3.9k"/>
@@ -2593,28 +2286,21 @@ V</text>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY2" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="supply2" deviceset="GND" device=""/>
-<part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
 <part name="MOTOR/LED_5V" library="supply2" deviceset="+5V" device="" value="MOTOR/LED_5V"/>
 <part name="SUPPLY6" library="supply2" deviceset="GND" device=""/>
 <part name="LED" library="adafruit" deviceset="PINHD-1X6" device="B" value="MOTOR"/>
 <part name="FSR/IMU_5V" library="supply2" deviceset="+5V/3" device="" value="FSR/IMU_5V"/>
-<part name="FSR/IMU_5V1" library="supply2" deviceset="+5V/3" device="" value="FSR/IMU_5V"/>
-<part name="SUPPLY7" library="supply2" deviceset="GND" device=""/>
 <part name="PCB2" library="IDD" deviceset="ARDUINO_MINI_PRO" device=""/>
 <part name="MOTOR/LED_5V1" library="supply2" deviceset="+5V" device="" value="MOTOR/LED_5V"/>
 <part name="FSR" library="adafruit" deviceset="PINHD-1X8" device="BIG"/>
 <part name="SUPPLY8" library="supply2" deviceset="GND" device=""/>
-<part name="H1" library="holes" deviceset="MOUNT-HOLE" device="2.8"/>
-<part name="H2" library="holes" deviceset="MOUNT-HOLE" device="2.8"/>
-<part name="H3" library="holes" deviceset="MOUNT-HOLE" device="2.8"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="IMU" gate="G$1" x="99.06" y="40.64"/>
 <instance part="Q1" gate="G$1" x="-22.86" y="81.28" rot="MR0"/>
 <instance part="D1" gate="G$1" x="-15.24" y="88.9" rot="R90"/>
 <instance part="R1" gate="G$1" x="-10.16" y="63.5"/>
@@ -2627,21 +2313,15 @@ V</text>
 <instance part="SUPPLY1" gate="GND" x="0" y="71.12" rot="R270"/>
 <instance part="SUPPLY2" gate="GND" x="35.56" y="99.06" rot="R180"/>
 <instance part="SUPPLY3" gate="GND" x="55.88" y="76.2" rot="R90"/>
-<instance part="SUPPLY4" gate="GND" x="35.56" y="30.48"/>
 <instance part="SUPPLY5" gate="GND" x="-58.42" y="55.88"/>
 <instance part="MOTOR/LED_5V" gate="+5V" x="-40.64" y="71.12"/>
 <instance part="SUPPLY6" gate="GND" x="-25.4" y="71.12"/>
 <instance part="LED" gate="A" x="-68.58" y="68.58" rot="R180"/>
 <instance part="FSR/IMU_5V" gate="G$1" x="91.44" y="83.82"/>
-<instance part="FSR/IMU_5V1" gate="G$1" x="81.28" y="22.86" rot="R180"/>
-<instance part="SUPPLY7" gate="GND" x="86.36" y="33.02" rot="R270"/>
 <instance part="PCB2" gate="G$1" x="30.48" y="60.96" rot="R90"/>
 <instance part="MOTOR/LED_5V1" gate="+5V" x="-53.34" y="101.6"/>
 <instance part="FSR" gate="G$1" x="160.02" y="68.58"/>
 <instance part="SUPPLY8" gate="GND" x="170.18" y="53.34"/>
-<instance part="H1" gate="G$1" x="-38.1" y="25.4"/>
-<instance part="H2" gate="G$1" x="-27.94" y="25.4"/>
-<instance part="H3" gate="G$1" x="-15.24" y="25.4"/>
 </instances>
 <busses>
 </busses>
@@ -2665,11 +2345,6 @@ V</text>
 <pinref part="SUPPLY6" gate="GND" pin="GND"/>
 <pinref part="Q1" gate="G$1" pin="E"/>
 <wire x1="-25.4" y1="73.66" x2="-25.4" y2="76.2" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="PCB2" gate="G$1" pin="..GND"/>
-<pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<wire x1="35.56" y1="38.1" x2="35.56" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="PCB2" gate="G$1" pin=".GND"/>
@@ -2703,11 +2378,6 @@ V</text>
 <pinref part="SUPPLY8" gate="GND" pin="GND"/>
 <wire x1="170.18" y1="55.88" x2="170.18" y2="58.42" width="0.1524" layer="91"/>
 <junction x="170.18" y="58.42"/>
-</segment>
-<segment>
-<pinref part="SUPPLY7" gate="GND" pin="GND"/>
-<pinref part="IMU" gate="G$1" pin="8"/>
-<wire x1="88.9" y1="33.02" x2="96.52" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -2756,17 +2426,12 @@ V</text>
 <pinref part="R6" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="78.74" x2="99.06" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="78.74" x2="99.06" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="PCB2" gate="G$1" pin="5V"/>
-<wire x1="45.72" y1="71.12" x2="66.04" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="71.12" x2="66.04" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="78.74" x2="76.2" y2="78.74" width="0.1524" layer="91"/>
 <junction x="76.2" y="78.74"/>
-</segment>
-<segment>
-<pinref part="FSR/IMU_5V1" gate="G$1" pin="+5V/3"/>
-<pinref part="IMU" gate="G$1" pin="10"/>
-<wire x1="81.28" y1="27.94" x2="81.28" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="27.94" x2="81.28" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="78.74" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="PCB2" gate="G$1" pin="5V."/>
+<wire x1="66.04" y1="106.68" x2="33.02" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="106.68" x2="33.02" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -2839,10 +2504,11 @@ V</text>
 <wire x1="-15.24" y1="99.06" x2="-15.24" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="MOTOR/LED_5V1" gate="+5V" pin="+5V"/>
 <junction x="-53.34" y="99.06"/>
-<pinref part="PCB2" gate="G$1" pin="5V."/>
-<wire x1="33.02" y1="91.44" x2="33.02" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="99.06" x2="-15.24" y2="99.06" width="0.1524" layer="91"/>
-<junction x="-15.24" y="99.06"/>
+<wire x1="-15.24" y1="99.06" x2="-15.24" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="-15.24" y1="111.76" x2="60.96" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="111.76" x2="60.96" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="PCB2" gate="G$1" pin="5V"/>
+<wire x1="45.72" y1="71.12" x2="60.96" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-66.04" y1="68.58" x2="-63.5" y2="68.58" width="0.1524" layer="91"/>
@@ -2851,26 +2517,6 @@ V</text>
 <pinref part="C1" gate="G$1" pin="+"/>
 <wire x1="-63.5" y1="68.58" x2="-40.64" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="-66.04" y1="68.58" x2="-81.28" y2="68.58" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$11" class="0">
-<segment>
-<pinref part="PCB2" gate="G$1" pin="A5"/>
-<wire x1="30.48" y1="38.1" x2="30.48" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="25.4" x2="76.2" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="76.2" y1="25.4" x2="76.2" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="IMU" gate="G$1" pin="7"/>
-<wire x1="76.2" y1="35.56" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$10" class="0">
-<segment>
-<pinref part="PCB2" gate="G$1" pin="A4"/>
-<wire x1="33.02" y1="38.1" x2="33.02" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="27.94" x2="73.66" y2="27.94" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="27.94" x2="73.66" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="IMU" gate="G$1" pin="6"/>
-<wire x1="73.66" y1="38.1" x2="96.52" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

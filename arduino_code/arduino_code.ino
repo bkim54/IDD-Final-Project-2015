@@ -11,8 +11,9 @@
 #define ACCEL_THRESH 1.0
 #define GYRO_THRESH 0.5
 #define MAG_THRESH 8.0
-#define FSR_THRESH 100.0
-
+#define FSR0_THRESH 20.0
+#define FSR1_THRESH 60.0
+#define FSR2_THRESH 10.0
 /*Define LEDSTRIP */
 #define PIN 5
 // Parameter 1 = number of pixels in strip
@@ -22,7 +23,7 @@
 //   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(6, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(3, PIN, NEO_GRB + NEO_KHZ800);
 
 /*Vibration Motor*/
 int motorPin = 4;
@@ -37,11 +38,11 @@ Adafruit_L3GD20_Unified       gyro  = Adafruit_L3GD20_Unified(20);
 int FSR0 = A0;
 int FSR1 = A1;
 int FSR2 = A2;
-int FSR3 = A3;
+//int FSR3 = A3;
 int FSR0_value = 0;
 int FSR1_value = 0;
 int FSR2_value = 0;
-int FSR3_value = 0;
+//int FSR3_value = 0;
 
 
 float gyro_buffer[10];
@@ -158,17 +159,17 @@ void loop(void)
   FSR0_value = analogRead(FSR0);
   FSR1_value = analogRead(FSR1);
   FSR2_value = analogRead(FSR2);
-  FSR3_value = analogRead(FSR3);
+  //FSR3_value = analogRead(FSR3);
   //Serial.println(FSR0_value);
   Serial.print(F("FSR: "));
   Serial.print(FSR0_value); Serial.print("  ");
   Serial.print(FSR1_value); Serial.print("  ");
-  Serial.print(FSR2_value); Serial.print("  ");
-  Serial.println(FSR3_value); 
+  Serial.println(FSR2_value); 
   //Serial.println("----");
   //Serial.println(accel_mag);
   //Serial.println(gyro_mag);
   //Serial.p rintln("----");
+  /*
   accel_buffer[count%10] = accel_mag;
   gyro_buffer[count%10] = gyro_mag;
   count++;
@@ -182,7 +183,7 @@ void loop(void)
   }
   for(int i =0; i < 10; i++) {
     gyro_avg=gyro_avg+gyro_buffer[i];
-  }
+  } */
   
   accel_avg = accel_avg/10.0;
   gyro_avg = gyro_avg/10.0;
@@ -194,6 +195,7 @@ void loop(void)
        if(gyro_mag > GYRO_THRESH) { 
          //Serial.println(gyro_mag);
         theaterChase(strip.Color(127, 0, 0), 25);
+        strip.show();
         //analogWrite(motorPin, 255);
       } 
     } 
@@ -202,22 +204,29 @@ void loop(void)
       //if(gyro_mag > GYRO_THRESH)
          //Serial.println(abs(header-prev_header));
          //Serial.println(gyro_mag);
-      theaterChase(strip.Color(0, 0, 0), 10);
+      //theaterChase(strip.Color(0, 0, 0), 10);
+      for (int i=0; i < strip.numPixels(); i++) {
+        strip.setPixelColor(i, 0);    //turn every  pixel on
+     }
+     strip.show();
       //analogWrite(motorPin, 0);
     }
   } else { //not moving so reset the resting state
     //Serial.println(accel_mag);
     prev_header = header;
-    theaterChase(strip.Color(0, 0, 0), 10);
+    //theaterChase(strip.Color(0, 0, 0), 10);
+    for (int i=0; i < strip.numPixels(); i++) {
+        strip.setPixelColor(i, 0);    //turn every  pixel on
+    }
     //analogWrite(motorPin, 0);
   }
   
-  if (FSR0_value < FSR_THRESH) {
-    analogWrite(motorPin, 255);
+  if (FSR0_value <= FSR0_THRESH || FSR1_value <= FSR1_THRESH) {
+    analogWrite(motorPin, 128);
   } else {
     analogWrite(motorPin, 0);
   }
-  //delay(50);
+  delay(50);
 }
 
 //Theatre-style crawling lights.
@@ -236,4 +245,8 @@ void theaterChase(uint32_t c, uint8_t wait) {
       }
     }
   }
+  for (int i=0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(i, 0);    //turn every  pixel on
+  }
+  strip.show();
 }
