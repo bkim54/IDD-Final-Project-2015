@@ -29,9 +29,15 @@ elbowCount = 0
 wristCount = 0
 notWritten = True;
 
-if __name__ == "__main__":    
+if __name__ == "__main__": 
+    import serial.tools.list_ports
+
+
+    ports = list(serial.tools.list_ports.comports())
+    for p in ports:
+        print p   
     try:
-        ser = serial.Serial('/COM7',9600)
+        ser = serial.Serial('/COM5',9600)
         connected = True
         db = dataset.connect('sqlite:///nbedmbed.db')       
         motion_table = db['motion']
@@ -55,6 +61,7 @@ if __name__ == "__main__":
     
         try:
             accel = ser.readline().split()
+            # print accel
         except serial.SerialException:
             print "disconnected"
             break
@@ -64,7 +71,9 @@ if __name__ == "__main__":
             
             try:
                 gyro = ser.readline().split()
+                # print gyro
                 force = ser.readline().split()
+                # print force
             except serial.SerialException:
                 print "disconnected"
                 break
@@ -84,7 +93,7 @@ if __name__ == "__main__":
                 count = 0
             gyro = numpy.sum(gyro_buffer)/10.0
             accel = numpy.sum(accel_buffer)/10.0
-            force = [numpy.sum(FSR0_buffer)/10.0, numpy.sum(FSR1_buffer)/10.0, numpy.sum(FSR2_buffer)/10.0, numpy.sum(FSR3_buffer)/10.0]
+            force = [numpy.sum(FSR0_buffer)/10.0, numpy.sum(FSR1_buffer)/10.0, numpy.sum(FSR2_buffer)/10.0]
             #print force
             #print "accel: " +str(accel)
             #print "gyro: " + str(gyro)
@@ -96,7 +105,7 @@ if __name__ == "__main__":
                     if (key == old_IMU_key):
                         wristCount = wristCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
-                        print "update database: current hour, wrist_count"
+                        # print "update database: current hour, wrist_count"
 #                        if notWritten:
 #                            ser.write("1".encode());
 #                            ser.write("255".encode());
@@ -106,7 +115,7 @@ if __name__ == "__main__":
                         elbowCount = 0
                         wristCount = 1
                         motion_table.insert(dict(date=key, elbow = elbowCount, wrist = wristCount))
-                        print "insert database: current hour, wrist_count"
+                        # print "insert database: current hour, wrist_count"
                         #ctypes.windll.user32.MessageBoxA(0, "Your text", "Your title", 1)  
                         
                 
@@ -114,20 +123,28 @@ if __name__ == "__main__":
                     if (key == old_IMU_key):
                         elbowCount = elbowCount+1
                         motion_table.update(dict(date=key,elbow=elbowCount,wrist=wristCount),['date'])
-                        print "update database: current hour, elbow_count"      
+                        # print "update database: current hour, elbow_count"      
 #                        ser.write("0".encode());
 #                        ser.write("0".encode());
                     else:
                         elbowCount = 1
                         #wristCount = 0
                         motion_table.insert(dict(date=key, elbow = elbowCount, wrist = wristCount))
-                        print "insert database: current hour, elbow_count" 
+                        # print "insert database: current hour, elbow_count" 
                 old_IMU_key = key
                 
              #print "FSR database" 
             if (key == old_force_key):
-                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR0Total=force_table[key]['FSR0']+force[0],FSR1Total=force_table[key]['FSR1']+force[1],FSR2Total=force_table[key]['FSR2']+force[2], Count=force_table[key]['Count']+1),['date'])
+                force_table.update(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR0Total=force0Total+force[0],FSR1Total=force1Total+force[1],FSR2Total=force2Total+force[2], Count=forceCount+1),['date'])
+                force0Total += force[0]
+                force1Total += force[1]
+                force2Total += force[2]
+                forceCount += 1
             else:
+                force0Total = 0
+                force1Total = 0
+                force2Total = 0
+                forceCount = 0
                 force_table.insert(dict(date=key, FSR0 = force[0], FSR1 = force[1], FSR2= force[2], FSR0Total=0, FSR1Total=0, FSR2Total=0, Count=0))
             old_force_key = key
 
