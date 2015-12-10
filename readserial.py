@@ -1,4 +1,5 @@
 import serial
+import serial.tools.list_ports
 import numpy
 import datetime
 import dataset
@@ -31,7 +32,13 @@ notWritten = True;
 
 if __name__ == "__main__":    
     try:
-        ser = serial.Serial('/COM7',9600)
+        ports = list(serial.tools.list_ports.comports())
+        for p in ports:
+            print p
+        ser = serial.Serial('/COM10',9600)
+        print "hi"
+        #ser = serial.Serial(0)
+        print ser.name
         connected = True
         db = dataset.connect('sqlite:///nbedmbed.db')       
         motion_table = db['motion']
@@ -41,7 +48,7 @@ if __name__ == "__main__":
         force_table.delete()
         print "connected"
     except serial.SerialException:
-        print "No device connected"
+        print "No device connected~~"
         connected=False
         
     while (connected):

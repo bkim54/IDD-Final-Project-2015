@@ -226,7 +226,7 @@ void loop(void)
   } else {
     analogWrite(motorPin, 0);
   }
-  delay(50);
+  delay(100);
 }
 
 //Theatre-style crawling lights.
