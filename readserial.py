@@ -84,7 +84,7 @@ if __name__ == "__main__":
             
             gyro = [float(gyro[1]), float(gyro[2]), float(gyro[3])]
             gyro = numpy.sqrt(numpy.sum(numpy.power(gyro,2)))
-            
+            force = [float(force[1]), float(force[2]), float(force[3])]
             #g#yro_buffer[count%10] = gyro
             #accel_buffer[count%10] = accel  
             #FSR0_buffer[count%10]  = float(force[1])
